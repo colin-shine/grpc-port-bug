@@ -1,6 +1,7 @@
 package com.example.grpcportbug;
 
 import com.example.grpc.Greeting;
+import io.grpc.StatusRuntimeException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class FailingTest {
 
-    @Test
+    @Test(expected = StatusRuntimeException.class)
     public void can_get_greeting() {
         // Given
         GreetingTestClient testClient = new GreetingTestClient("localhost", 6565);
